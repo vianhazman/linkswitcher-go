@@ -5,6 +5,7 @@ import (
 	"log"
 	"math/rand"
 	"net/http"
+	"os"
 	"strconv"
 	"strings"
 )
@@ -55,17 +56,25 @@ func checkMode(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	choices = map[string]string{
-		"A": "https://docs.google.com/forms/d/1_T6Dyg8PGbiJKwGFBT-RDFRnlkcPDU5wFDDbOaLA1aU",
-		"B": "https://docs.google.com/forms/d/1x89NQ06-Q2DCis8FDHQN7W6C3CNicDp1oSpvrXbTD1w",
-		"C": "https://docs.google.com/forms/d/1eOZSuWHZ51ytM_ZLKQ7QkXYSrK_e-gM5xYc17oJvrpQ",
+	getenvironment := func(data []string, getkeyval func(item string) (key, val string)) map[string]string {
+		items := make(map[string]string)
+		for _, item := range data {
+			key, val := getkeyval(item)
+			items[key] = val
+		}
+		return items
 	}
+	choices := getenvironment(os.Environ(), func(item string) (key, val string) {
+		splits := strings.Split(item, "=")
+		key = splits[0]
+		val = splits[1]
+		return
+	})
 	random = true
 	manual = "A"
 
 	values = make([]string, 0, len(choices))
-	for k, v := range choices {
-		fmt.Println(k)
+	for _, v := range choices {
 		values = append(values, v)
 	}
 
@@ -75,5 +84,5 @@ func main() {
 	http.HandleFunc("/check", checkMode)
 	http.HandleFunc("/change/", changeCurrent)
 
-	log.Fatal(http.ListenAndServe(":5000", nil))
+	log.Fatal(http.ListenAndServe(":8080", nil))
 }

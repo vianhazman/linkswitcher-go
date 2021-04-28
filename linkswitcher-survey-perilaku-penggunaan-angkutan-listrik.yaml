@@ -1,0 +1,8 @@
+module: linkswitcher-survey-perilaku-penggunaan-angkutan-listrik
+runtime: go115
+
+env_variables:
+  A: "https://forms.gle/7cdjyUooFcz45aSS6"
+  B: "https://forms.gle/FV1oH8FqcKe7BdLw6"
+  C: "https://forms.gle/w1fvu7a7rxzw7bMG9"
+  D: "https://forms.gle/y7EKTVKehYagFYsM9"
