@@ -1,0 +1,8 @@
+module: linkswitcher-survey-preferensi-bus-listrik-e
+runtime: go115
+
+env_variables:
+  A: "https://forms.gle/oanbNi3bmLHbDsQk8"
+  B: "https://forms.gle/ZKWicdRWGZe6yD359"
+  C: "https://forms.gle/C2oLHaf9BNHLMo3A7"
+  D: "https://forms.gle/xHyHNnMGEWp17kR26"

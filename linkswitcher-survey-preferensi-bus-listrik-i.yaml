@@ -1,4 +1,4 @@
-module: linkswitcher-survey-angkutan-listrik
+module: linkswitcher-survey-preferensi-bus-listrik-i
 runtime: go115
 
 env_variables:
